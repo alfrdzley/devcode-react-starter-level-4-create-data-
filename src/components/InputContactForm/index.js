@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { addNewContact } from "../../services";
 import "./style.css";
 
@@ -35,14 +35,14 @@ const InputContactForm = (props) => {
   const allowSubmit = !(!fullName || !phoneNumber || !email);
 
   // TODO: Uncomment baris kode di bawah untuk mengisi input field dengan data kontak yang akan diubah ketika value dari selectedContact berubah
-  // useEffect(() => {
-  //   setId(selectedContact?.id);
-  //   setFullName(selectedContact?.fullName ? selectedContact.fullName : "");
-  //   setPhoneNumber(
-  //     selectedContact?.phoneNumber ? selectedContact?.phoneNumber : ""
-  //   );
-  //   setEmail(selectedContact?.email ? selectedContact.email : "");
-  // }, [selectedContact]);
+  useEffect(() => {
+    setId(selectedContact?.id);
+    setFullName(selectedContact?.fullName ? selectedContact.fullName : "");
+    setPhoneNumber(
+      selectedContact?.phoneNumber ? selectedContact?.phoneNumber : ""
+    );
+    setEmail(selectedContact?.email ? selectedContact.email : "");
+  }, [selectedContact]);
 
   return (
     <div className="input-contact__form-container">

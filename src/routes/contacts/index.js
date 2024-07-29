@@ -26,31 +26,63 @@ const ContactManager = () => {
     handleGetContactsData();
   }, []);
 
+  // return (
+  //   <div className="home">
+  //     <div className="container">
+  //       { selectedContact }
+  //       <InputContactForm handleGetContacts={handleGetContactsData} />
+  //       <div className="contact-list__container">
+  //         <>
+  //           {contactsData && contactsData?.length > 0
+  //             ? contactsData.map((contact, key) => (
+  //                 <ContactItem
+  //                   key={key}
+  //                   id={contact?.id}
+  //                   full_name={contact?.full_name}
+  //                   phone_number={contact?.phone_number}
+  //                   email={contact?.email}
+  //                   handleGetContacts={handleGetContactsData}
+  //                   handleSetSelected={handleSetSelectedContact}
+  //                 />
+  //               ))
+  //             : ""}
+  //         </>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="home">
-      <div className="container">
-        {/* TODO: Tambahkan selectedContact sebagai props pada komponen InputContactForm */}
-        <InputContactForm handleGetContacts={handleGetContactsData} />
-        <div className="contact-list__container">
-          <>
-            {contactsData && contactsData?.length > 0
-              ? contactsData.map((contact, key) => (
-                  <ContactItem
-                    key={key}
-                    id={contact?.id}
-                    full_name={contact?.full_name}
-                    phone_number={contact?.phone_number}
-                    email={contact?.email}
-                    handleGetContacts={handleGetContactsData}
-                    handleSetSelected={handleSetSelectedContact}
-                  />
-                ))
-              : ""}
-          </>
+      <div className="home">
+        <div className="container">
+          { selectedContact && (
+              <div>
+                <p>Name: {selectedContact.fullName}</p>
+                <p>Phone: {selectedContact.phoneNumber}</p>
+                <p>Email: {selectedContact.email}</p>
+              </div>
+          )}
+          <InputContactForm handleGetContacts={handleGetContactsData} />
+          <div className="contact-list__container">
+            <>
+              {contactsData && contactsData?.length > 0
+                  ? contactsData.map((contact, key) => (
+                      <ContactItem
+                          key={key}
+                          id={contact?.id}
+                          full_name={contact?.full_name}
+                          phone_number={contact?.phone_number}
+                          email={contact?.email}
+                          handleGetContacts={handleGetContactsData}
+                          handleSetSelected={handleSetSelectedContact}
+                      />
+                  ))
+                  : ""}
+            </>
+          </div>
         </div>
       </div>
-    </div>
   );
+
 };
 
 export default ContactManager;
